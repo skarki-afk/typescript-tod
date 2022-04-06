@@ -1,0 +1,73 @@
+interface Person{
+  name: string;
+  age?: number;
+}
+
+type Y = Person &{
+}
+
+interface Person extends Y {
+}
+interface Guy extends Person {
+
+}
+
+const employee: Person={
+  name: "Sagar"
+
+}
+let age : number | string;
+age = "ten";
+
+let printName: (name:string) => void;
+let personName: unknown
+
+interface X {
+  a: string;
+  b: number;
+}
+
+type Y=X& {
+  c: string;
+  d: number;
+}
+
+
+let x: Y ={
+  a:"nobody",
+  b: 45,
+  c: "hey",
+  d: 45
+}
+
+
+app.tsx
+
+const [todo,setTodo] = useState<string>("");
+  const [todos,setTodos] = useState<Todo[]>([])
+  const handleAdd =(e: React.FormEvent)=>{
+    e.preventDefault();
+    if(todo){
+      setTodos([...todos, {id: Date.now(), todo ,isDone:false} ])
+      setTodo("")
+    }
+  }
+
+  <SearchBar 
+      todo={todo}
+      setTodo={setTodo}
+      handleAdd={handleAdd}/>
+
+SearchBar
+interface Props{
+    todo: string
+    setTodo: React.Dispatch<React.SetStateAction<string>>
+    handleAdd:(e:React.FormEvent)=> void;
+}
+
+props: {todo, setTodo, handleAdd}:Props
+
+form : onSubmit={handleAdd}
+
+input: value={todo}
+             onChange={(e)=>setTodo(e.target.value)}

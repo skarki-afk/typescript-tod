@@ -1,24 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{useState} from 'react';
+import SearchBar from './components/SearchBar';
 import './App.css';
+import { Todo } from './model';
+import TodoList from './components/TodoList';
 
-function App() {
+
+
+const App: React.FC=()=> {
+  const [todo, setTodo] = useState<string>("");
+  const [todos,setTodos] = useState<Todo[]>([]);
+  const handleClick =(e: React.FormEvent)=>{
+    e.preventDefault();
+    if(todo){
+      setTodos([...todos, {id:Date.now(), todo, isDone: false}])
+      setTodo("")
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='w-screen h-full bg-violet-400 flex flex-col z-10 px-6 align-center md:h-screen'>
+      <div className="flex justify-center uppercase header text-3xl py-2 text-white md:py-4 md:text-4xl">
+        tasker
+      </div>
+      <SearchBar
+      todo={todo}
+      setTodo = {setTodo}
+      handleClick={handleClick}
+      />
+      <TodoList
+      todos={todos}
+      setTodos ={setTodos}
+      />
     </div>
   );
 }
